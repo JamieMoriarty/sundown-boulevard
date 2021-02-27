@@ -1,0 +1,30 @@
+@import "../../style/import.scss";
+
+.home {
+  padding-top: 4rem;
+  $height: 10rem;
+
+  &__row {
+    margin-bottom: 1rem;
+  }
+
+  &__gallery {
+    height: $height;
+    background-color: $primary-color;
+  }
+
+  &__order {
+    height: $height;
+    background-color: $primary-color;
+  }
+
+  &__find-order {
+    height: $height;
+    background-color: $primary-color;
+  }
+
+  &__content-box {
+    height: $height;
+    background-color: $primary-color;
+  }
+}
