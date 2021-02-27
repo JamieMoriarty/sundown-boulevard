@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import Button from "../../modules/Button/index";
 
 import styles from "./Drinks.module.scss";
 
 const DrinksScreen = () => {
+  const history = useHistory();
+
   const [apiData, setApiData] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(undefined);
@@ -71,7 +74,9 @@ const DrinksScreen = () => {
         <div className="col-4">
           <div className={styles["drinks-screen__next-module"]}>
             <p>Er du tilfreds dine drinks valg? Så gå videre til tidsbestilling!</p>
-            <Button disabled={!canProceed}>Videre</Button>
+            <Button disabled={!canProceed} onClick={() => (canProceed ? history.push("/order") : "")}>
+              Videre
+            </Button>
           </div>
         </div>
       </div>
