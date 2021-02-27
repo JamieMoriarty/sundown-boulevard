@@ -53,27 +53,32 @@ const DishScreen = () => {
               {loading ? <p>Henter data...</p> : null}
               {!loading && apiData ? (
                 <React.Fragment>
-                  <img
-                    src={apiData.strMealThumb}
-                    alt={`Billede af retten ${apiData.strMeal}`}
-                    className={styles["dish-screen__image"]}
-                    style={{ maxWidth: "100%" }}
-                  />
-                  <h1>{apiData.strMeal}</h1>
+                  {apiData.strMealThumb && (
+                    <img
+                      src={apiData.strMealThumb}
+                      alt={`Billede af retten ${apiData.strMeal}`}
+                      className={styles["dish-screen__image"]}
+                      width="350"
+                      height="350"
+                    />
+                  )}
+                  <h1 className={styles["dish-screen__dish-title"]}>{apiData.strMeal}</h1>
                   {apiData.strTags && (
                     <React.Fragment>
-                      <h2>Kategorier:</h2>
-                      <p>
-                        <ul>
+                      <h2 className={styles["dish-screen__section-heading"]}>Kategorier:</h2>
+                      <p className={styles["dish-screen__section-content"]}>
+                        <ul className="row">
                           {apiData.strTags.split(",").map((tag) => (
-                            <li key={tag}>{tag}</li>
+                            <li key={tag} className="col-4">
+                              {tag}
+                            </li>
                           ))}
                         </ul>
                       </p>
                     </React.Fragment>
                   )}
-                  <h2>Ingredienser:</h2>
-                  <p>{ingredientsString(apiData)}</p>
+                  <h2 className={styles["dish-screen__section-heading"]}>Ingredienser:</h2>
+                  <p className={styles["dish-screen__section-content"]}>{ingredientsString(apiData)}</p>
                 </React.Fragment>
               ) : null}
             </div>
