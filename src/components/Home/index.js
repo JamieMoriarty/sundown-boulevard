@@ -8,7 +8,7 @@ import Order from "./Order/index";
 
 const HomeView = () => {
   return (
-    <div className={`container ${styles["home"]}`}>
+    <article className={`container ${styles["home"]}`}>
       <div className={`row ${styles["home__row"]}`}>
         <div className="col-8">
           <Gallery />
@@ -25,7 +25,7 @@ const HomeView = () => {
           <ContentBox />
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

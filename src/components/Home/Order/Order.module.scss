@@ -1,11 +1,33 @@
 @import "../../../style/import.scss";
 
 .order {
-  height: 10rem;
   border: 2px solid $primary-color;
   border-radius: 5px;
 
+  padding: 1rem 1rem;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+
+  &__title {
+    //margin-top: 1rem;
+    font-size: 1.3rem;
+  }
+
+  &__description {
+    font-size: 0.9rem;
+  }
+
+  &__button {
+    font-family: inherit;
+    font-weight: inherit;
+
+    border: 2px solid white;
+    border-radius: 10px;
+
+    background-color: $primary-color;
+    color: white;
+    padding: 0.3rem 1.5rem;
+  }
 }
