@@ -1,0 +1,13 @@
+@import "../../style/import.scss";
+
+.button {
+  font-family: inherit;
+  font-weight: inherit;
+
+  border: 2px solid white;
+  border-radius: 10px;
+
+  background-color: $primary-color;
+  color: white;
+  padding: 0.3rem 1.5rem;
+}
