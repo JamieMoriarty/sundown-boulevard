@@ -4,4 +4,8 @@
   @extend .container;
   padding-top: 4rem;
   min-height: 20rem;
+
+  &__image {
+    max-width: 100%;
+  }
 }
