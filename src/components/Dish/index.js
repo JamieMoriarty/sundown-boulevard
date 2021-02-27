@@ -78,8 +78,10 @@ const DishScreen = () => {
               ) : null}
             </div>
             <div className="col-4">
-              <p>Er du tilfreds med den viste ret? Så gå videre til drinks valg!</p>
-              <Button disabled={loading}>Videre</Button>
+              <div className={styles["dish-screen__next-module"]}>
+                <p>Er du tilfreds med den viste ret? Så gå videre til drinks valg!</p>
+                <Button disabled={loading}>Videre</Button>
+              </div>
             </div>
           </React.Fragment>
         ) : null}
