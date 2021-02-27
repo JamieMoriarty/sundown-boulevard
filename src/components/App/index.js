@@ -1,10 +1,14 @@
+import React from "react";
+
+import NavBar from "../NavBar";
+
 import "./App.scss";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>This is the Sundown Boulevard app :)</h1>
+        <NavBar />
       </header>
     </div>
   );
