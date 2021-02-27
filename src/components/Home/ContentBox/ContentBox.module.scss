@@ -1,0 +1,11 @@
+@import "../../../style/import.scss";
+
+.content-box {
+  height: 10rem;
+  border: 2px solid $primary-color;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

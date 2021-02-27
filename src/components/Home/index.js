@@ -1,24 +1,28 @@
 import React from "react";
 
 import styles from "./Home.module.scss";
+import ContentBox from "./ContentBox/index";
+import FindOrder from "./FindOrder/index";
+import Gallery from "./Gallery/index";
+import Order from "./Order/index";
 
 const HomeView = () => {
   return (
     <div className={`container ${styles["home"]}`}>
       <div className={`row ${styles["home__row"]}`}>
         <div className="col-8">
-          <div className={styles["home__gallery"]}></div>
+          <Gallery />
         </div>
         <div className="col-4">
-          <div className={styles["home__order"]}></div>
+          <Order />
         </div>
       </div>
       <div className={`row ${styles["home__row"]}`}>
         <div className="col-6">
-          <div className={styles["home__find-order"]}></div>
+          <FindOrder />
         </div>
         <div className="col-6">
-          <div className={styles["home__content-box"]}></div>
+          <ContentBox />
         </div>
       </div>
     </div>
