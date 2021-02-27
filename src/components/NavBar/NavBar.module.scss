@@ -1,8 +1,11 @@
 @import "../../style/import.scss";
 
 .navbar {
-  padding: 0;
   position: fixed;
+  z-index: 1;
+  background-color: white;
+
+  padding: 0;
   height: 3rem;
   width: 100%;
 
