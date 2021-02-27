@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import Button from "../../modules/Button";
 
 import styles from "./Dish.module.scss";
@@ -16,6 +18,8 @@ const DishScreen = () => {
   const [apiData, setApiData] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(undefined);
+
+  const history = useHistory();
 
   useEffect(() => {
     let dataCanBeSet = true;
@@ -85,7 +89,9 @@ const DishScreen = () => {
             <div className="col-4">
               <div className={styles["dish-screen__next-module"]}>
                 <p>Er du tilfreds med den viste ret? Så gå videre til drinks valg!</p>
-                <Button disabled={loading}>Videre</Button>
+                <Button disabled={loading || error} onClick={() => history.push("/drinks")}>
+                  Videre
+                </Button>
               </div>
             </div>
           </React.Fragment>

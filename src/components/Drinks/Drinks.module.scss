@@ -1,0 +1,9 @@
+@import "../../style/import.scss";
+
+.drinks-screen {
+  @extend .container;
+  padding-top: 4rem;
+  min-height: 20rem;
+
+  border: 5px solid $primary-color;
+}

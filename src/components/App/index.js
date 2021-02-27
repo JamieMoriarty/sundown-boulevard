@@ -6,6 +6,7 @@ import HomeView from "../Home";
 
 import "./App.scss";
 import DishScreen from "../Dish";
+import DrinksScreen from "../Drinks";
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
           <NavBar />
           <main>
             <Switch>
+              <Route path="/drinks">
+                <DrinksScreen />
+              </Route>
               <Route path="/ret">
                 <DishScreen />
               </Route>
