@@ -4,16 +4,68 @@
   @extend .container;
   padding-top: 4rem;
 
+  &__content {
+    display: inline-block;
+  }
+
+  &__order-grid {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: fit-content;
+  }
+
   &__title {
     text-align: left;
     font-size: 1.5rem;
   }
 
-  &__date-picker {
+  &__section-title {
+    text-align: left;
+    font-size: 1.3rem;
+  }
+
+  &__label {
+    width: 100%;
+    text-align: left;
+    color: $neutral-color-contrast;
+    margin-left: 1rem;
+  }
+
+  &__date-and-time {
+    display: inline-block;
+    width: 300px;
+    text-align: left;
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
+
+  &__remain-order-details {
+    display: inline-block;
+    width: 350px;
+    text-align: left;
     margin-top: 1rem;
   }
 
+  &__date-picker {
+    color: $primary-color;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  &__time-picker {
+    display: block;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   &__people-picker {
+    display: flex;
+    justify-content: center;
     font-size: 3rem;
     display: flex;
     align-items: center;
@@ -47,7 +99,15 @@
     }
   }
 
+  &__email-input {
+    margin-top: 0.5rem;
+    padding-left: 0.5rem;
+    width: calc(100% - 15px);
+  }
+
   &__button {
     float: right;
+    margin-right: 3rem;
+    margin-top: 1rem;
   }
 }
