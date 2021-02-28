@@ -1,0 +1,26 @@
+@import "../../../style/import.scss";
+
+.date-time-picker {
+  &__date-picker {
+    color: $primary-color;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  &__label {
+    width: 100%;
+    text-align: left;
+    color: $neutral-color-contrast;
+    margin-left: 1rem;
+  }
+
+  &__time-picker {
+    display: block;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
