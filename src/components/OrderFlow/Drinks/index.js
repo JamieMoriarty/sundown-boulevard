@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 import Button from "../../../modules/Button/index";
 
 import styles from "./Drinks.module.scss";
 
-const DrinksScreen = ({ nextStep }) => {
-  const history = useHistory();
-
+const DrinksScreen = ({ nextStep, updateOrder }) => {
   const [apiData, setApiData] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(undefined);
@@ -50,6 +47,19 @@ const DrinksScreen = ({ nextStep }) => {
 
   const canProceed = selectedDrinks.length > 0;
 
+  const progress = () => {
+    if (selectedDrinks.length === 0) {
+      return;
+    }
+
+    const drinksOrderData = selectedDrinks
+      .map((id) => apiData.find((beer) => beer.id === id))
+      .map((beer) => ({ id: beer.id, name: beer.name, image_url: beer.image_url }));
+
+    updateOrder(drinksOrderData);
+    nextStep();
+  };
+
   return (
     <div className={styles["drinks-screen"]}>
       <div className="row">
@@ -74,7 +84,7 @@ const DrinksScreen = ({ nextStep }) => {
         <div className="col-4">
           <div className={styles["drinks-screen__next-module"]}>
             <p>Er du tilfreds dine drinks valg? Så gå videre til tidsbestilling!</p>
-            <Button disabled={!canProceed} onClick={() => (canProceed ? nextStep() : "")}>
+            <Button disabled={!canProceed} onClick={progress}>
               Videre
             </Button>
             <div className={styles["drinks-screen__drinks-overview"]}>
