@@ -18,6 +18,7 @@ const OrderScreen = ({ nextStep, updateOrder }) => {
   const [chosenDate, setChosenDate] = useState(undefined);
   const [numPeople, setNumPeople] = useState(1);
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(undefined);
 
   const emailSetAndValid = () => {
     return email && validateEmail(email);
@@ -25,6 +26,7 @@ const OrderScreen = ({ nextStep, updateOrder }) => {
 
   const progress = () => {
     if (!emailSetAndValid()) {
+      setEmailError("Not valid email!");
       return;
     }
 
@@ -40,16 +42,23 @@ const OrderScreen = ({ nextStep, updateOrder }) => {
   return (
     <div className={styles["order-screen"]}>
       <div className={styles["order-screen__content"]}>
-        <h1 className={styles["order-screen__title"]}>Færdiggør bestilling!</h1>
+        <h1 className={styles["order-screen__title"]}>Finish order</h1>
         <div className={styles["order-screen__order-grid"]}>
           <div className={styles["order-screen__date-and-time"]}>
-            <h2 className={styles["order-screen__section-title"]}>Vælg dato og tid</h2>
+            <h2 className={styles["order-screen__section-title"]}>Choose date and time</h2>
             <DateTimePicker date={chosenDate} setDate={setChosenDate} id="order-date-picker" name="order-date-picker" />
           </div>
           <div className={styles["order-screen__remain-order-details"]}>
-            <h2 className={styles["order-screen__section-title"]}>Sidste ordre info</h2>
+            <h2 className={styles["order-screen__section-title"]}>Final order info</h2>
             <PeoplePicker people={numPeople} setPeople={setNumPeople} />
-            <EmailInput email={email} setEmail={setEmail} error={!validateEmail(email)} />
+            <EmailInput
+              email={email}
+              setEmail={(email) => {
+                setEmailError(undefined);
+                setEmail(email);
+              }}
+              error={emailError}
+            />
           </div>
         </div>
         <Button className={styles["order-screen__button"]} onClick={progress}>
@@ -63,7 +72,7 @@ const OrderScreen = ({ nextStep, updateOrder }) => {
 const EmailInput = ({ email, setEmail, error }) => {
   return (
     <label htmlFor="order-screen__people-picker" className={styles["order-screen__label"]}>
-      Indtast e-mail adresse:
+      Input e-mail adress
       <input
         type="email"
         value={email}
@@ -71,7 +80,7 @@ const EmailInput = ({ email, setEmail, error }) => {
         className={styles["order-screen__email-input"]}
         placeholder="Ex. jens.jensen@email.com"
       />
-      {error && <p>Ikke valid e-mail!</p>}
+      {error && <p style={{ color: "red", marginTop: "0.5rem" }}>Ikke valid e-mail!</p>}
     </label>
   );
 };
@@ -79,7 +88,7 @@ const EmailInput = ({ email, setEmail, error }) => {
 const PeoplePicker = ({ people, setPeople }) => {
   return (
     <label htmlFor="order-screen__people-picker" className={styles["order-screen__label"]}>
-      Vælg antal gæster:
+      Choose number of guests
       <div className={styles["order-screen__people-picker"]} id="order-screen__people-picker">
         <div
           className={`${styles["order-screen__people-picker__minus"]} ${

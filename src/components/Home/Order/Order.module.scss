@@ -4,7 +4,7 @@
   height: 100%;
   min-height: 10rem;
 
-  border: 2px solid $primary-color;
+  border: 2px solid $neutral-color-contrast;
   border-radius: 5px;
 
   padding: 1rem 1rem;
@@ -19,5 +19,6 @@
 
   &__description {
     font-size: 0.9rem;
+    color: $neutral-color-contrast;
   }
 }

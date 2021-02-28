@@ -5,7 +5,7 @@
   padding-top: 4rem;
 
   &__beer {
-    border: 3px solid $secondary-color;
+    border: 3px solid $neutral-color-contrast;
     border-radius: 3px;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -32,6 +32,7 @@
   }
 
   &__next-module {
+    color: $neutral-color-contrast;
     margin-top: 4rem;
     position: sticky;
     top: 4rem;
@@ -40,6 +41,7 @@
   &__drinks-overview {
     text-align: left;
     margin-top: 1rem;
+    color: $neutral-color-contrast;
 
     &__description {
       margin-bottom: 0;

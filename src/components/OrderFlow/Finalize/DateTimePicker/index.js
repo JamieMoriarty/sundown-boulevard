@@ -81,13 +81,13 @@ const DateTimePicker = ({ date, setDate }) => {
     return (
       <React.Fragment>
         <label htmlFor="order-date-picker" className={styles["date-time-picker__label"]}>
-          Vælg dato:
+          Pick date
           <div className={styles["date-time-picker__date-picker"]} id="order-date-picker" name="order-date-picker">
             <DatePicker selected={selectedDate} onChange={(date) => setDate(date)} filterDate={filterPassedDate} placeholderText="Select a date" />
           </div>
         </label>
         <label htmlFor="order-time-picker" className={styles["date-time-picker__label"]}>
-          Vælg Tid:
+          Pick time
           <select
             value={getHours(selectedDate) + ":" + (getMinutes(selectedDate) || "00")}
             onChange={(event) => setTime(event.target.value)}

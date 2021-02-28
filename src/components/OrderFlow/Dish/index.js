@@ -74,11 +74,11 @@ const DishScreen = ({ nextStep, updateOrder }) => {
   return (
     <div className={styles["dish-screen"]}>
       <div className="row">
-        {error ? <p>Der skete desværre en fejl :(</p> : null}
+        {error ? <p>An error occured :(</p> : null}
         {!error ? (
           <React.Fragment>
             <div className="col-8">
-              {loading ? <p>Henter data...</p> : null}
+              {loading ? <p>Fetching data...</p> : null}
               {!loading && apiData ? (
                 <React.Fragment>
                   {apiData.strMealThumb && (
@@ -93,7 +93,7 @@ const DishScreen = ({ nextStep, updateOrder }) => {
                   <h1 className={styles["dish-screen__dish-title"]}>{apiData.strMeal}</h1>
                   {apiData.strTags && (
                     <React.Fragment>
-                      <h2 className={styles["dish-screen__section-heading"]}>Kategorier:</h2>
+                      <h2 className={styles["dish-screen__section-heading"]}>Categories:</h2>
                       <p className={styles["dish-screen__section-content"]}>
                         <ul className="row">
                           {apiData.strTags.split(",").map((tag) => (
@@ -105,7 +105,7 @@ const DishScreen = ({ nextStep, updateOrder }) => {
                       </p>
                     </React.Fragment>
                   )}
-                  <h2 className={styles["dish-screen__section-heading"]}>Ingredienser:</h2>
+                  <h2 className={styles["dish-screen__section-heading"]}>Ingredients:</h2>
                   <p className={styles["dish-screen__section-content"]}>{ingredientsString(apiData)}</p>
                   <Button className={styles["dish-screen__update-button"]} onClick={updateDish}>
                     Generate new
@@ -115,9 +115,9 @@ const DishScreen = ({ nextStep, updateOrder }) => {
             </div>
             <div className="col-4">
               <div className={styles["dish-screen__next-module"]}>
-                <p>Er du tilfreds med den viste ret? Så gå videre til drinks valg!</p>
+                <p>Like what you see? Then proceed to choosing your drinks</p>
                 <Button disabled={loading || error} onClick={progress}>
-                  Videre
+                  Next
                 </Button>
               </div>
             </div>

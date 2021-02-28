@@ -23,10 +23,9 @@
   }
 
   &__logo {
-    @extend .col-2;
-    padding: 0.5rem 1.5rem;
-    background-color: $primary-color;
-    color: white;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__item {

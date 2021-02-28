@@ -83,9 +83,9 @@ const DrinksScreen = ({ nextStep, updateOrder }) => {
         </div>
         <div className="col-4">
           <div className={styles["drinks-screen__next-module"]}>
-            <p>Er du tilfreds dine drinks valg? Så gå videre til tidsbestilling!</p>
+            <p>Satisfied with your choices? Then proceed to next step!</p>
             <Button disabled={!canProceed} onClick={progress}>
-              Videre
+              Next
             </Button>
             <div className={styles["drinks-screen__drinks-overview"]}>
               {apiData && selectedDrinks.length > 0 ? (
