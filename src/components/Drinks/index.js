@@ -77,6 +77,29 @@ const DrinksScreen = () => {
             <Button disabled={!canProceed} onClick={() => (canProceed ? history.push("/order") : "")}>
               Videre
             </Button>
+            <div className={styles["drinks-screen__drinks-overview"]}>
+              {apiData && selectedDrinks.length > 0 ? (
+                <React.Fragment>
+                  <p className={styles["drinks-screen__drinks-overview__description"]}>Drinks liste:</p>
+                  <ul className={styles["drinks-screen__drinks-overview__list"]}>
+                    {selectedDrinks.map((id) => {
+                      const beerData = apiData.find((beer) => beer.id === id);
+                      return (
+                        <li key={`drinks-list-item__${beerData.id}`} className={styles["drinks-screen__drinks-overview__item"]}>
+                          <button
+                            className={styles["drinks-screen__drinks-overview__delete-button"]}
+                            onClick={() => toggleDrinkSelected(beerData.id)}
+                          >
+                            <img src="/32px-Flat_cross_icon.svg" height="16" width="16" alt="close icon" />
+                          </button>
+                          {beerData.name}{" "}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </React.Fragment>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

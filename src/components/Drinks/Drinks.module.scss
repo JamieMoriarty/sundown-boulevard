@@ -36,4 +36,28 @@
     position: sticky;
     top: 4rem;
   }
+
+  &__drinks-overview {
+    text-align: left;
+    margin-top: 1rem;
+
+    &__description {
+      margin-bottom: 0;
+    }
+
+    &__list {
+      margin-bottom: 0;
+      list-style-type: none;
+    }
+
+    &__item {
+      margin-bottom: 0;
+    }
+
+    &__delete-button {
+      background-color: white;
+      border: none;
+      margin-right: 0.5rem;
+    }
+  }
 }
