@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { format } from "date-fns";
+
 import Button from "../../../modules/Button/index";
 import DateTimePicker from "./DateTimePicker/index";
 
@@ -10,13 +12,29 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
-const OrderScreen = ({ nextStep }) => {
+const dateFormat = "yyyy-MM-d'T'HH:mm";
+
+const OrderScreen = ({ nextStep, updateOrder }) => {
   const [chosenDate, setChosenDate] = useState(undefined);
   const [numPeople, setNumPeople] = useState(1);
   const [email, setEmail] = useState("");
 
   const emailSetAndValid = () => {
     return email && validateEmail(email);
+  };
+
+  const progress = () => {
+    if (!emailSetAndValid()) {
+      return;
+    }
+
+    console.log("chosenDate", chosenDate);
+    updateOrder({
+      date: format(chosenDate, dateFormat),
+      people: numPeople,
+      email,
+    });
+    nextStep();
   };
 
   return (
@@ -34,7 +52,7 @@ const OrderScreen = ({ nextStep }) => {
             <EmailInput email={email} setEmail={setEmail} error={!validateEmail(email)} />
           </div>
         </div>
-        <Button className={styles["order-screen__button"]} onClick={() => (emailSetAndValid() ? nextStep : "")}>
+        <Button className={styles["order-screen__button"]} onClick={progress}>
           Order
         </Button>
       </div>

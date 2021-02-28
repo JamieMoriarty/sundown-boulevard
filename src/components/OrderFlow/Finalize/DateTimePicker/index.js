@@ -14,14 +14,17 @@ const DateTimePicker = ({ date, setDate }) => {
     return day !== 0 && day !== 6;
   };
 
-  const availableTimesFrom = ([startHour, startMinute]) => {
-    if (startHour && startHour >= 23) {
+  const availableTimesFrom = ([startHour = 14, startMinute = 0]) => {
+    const earliestHour = startMinute >= 30 ? startHour + 1 : startHour;
+    const earliestMinute = startMinute >= 30 ? 0 : 30;
+    if (earliestHour >= 23) {
       return [];
     }
 
-    const hourOptions = _.range(startHour && startHour >= 16 ? startHour : 16, 23);
+    const hourOptions = _.range(earliestHour >= 16 ? earliestHour : 16, 23);
     return hourOptions.reduce(
-      (acc, val, index) => (index === 0 && startMinute ? [...acc, val + ":" + startMinute] : [...acc, val + ":00", val + ":30"]),
+      (acc, val, index) =>
+        index === 0 && earliestMinute > 0 ? [...acc, val + ":" + (earliestMinute > 0 ? "30" : "00")] : [...acc, val + ":00", val + ":30"],
       []
     );
   };
@@ -45,18 +48,27 @@ const DateTimePicker = ({ date, setDate }) => {
       ? addDays(firstPossibleDay, 1)
       : addDays(firstPossibleDay, 2);
 
+    const [hours, minutes] = availableTimesFrom([getHours(firstPossibleDay), getMinutes(firstPossibleDay)])[0].split(":");
+
+    firstPossibleDay = setHours(firstPossibleDay, hours);
+    firstPossibleDay = setMinutes(firstPossibleDay, minutes);
+
+    console.log("firstPossibleDay", firstPossibleDay);
     return firstPossibleDay;
   };
 
   const selectedDate = choiceOrFirstPossible();
-  console.log("selectedDate", selectedDate);
+  if (!date) {
+    setDate(selectedDate);
+  }
+
   const filterPassedDate = (selectedDate) => {
     return isWeekday(selectedDate) && isAfter(selectedDate, new Date());
   };
 
   const getDateTimeChoice = (date, givenTime) => {
     const time = givenTime || availableTimesFrom([getHours(date), getMinutes(date)])[0];
-    console.log("time", time);
+
     const [hour, minute] = time.split(":");
 
     const dateWithHour = setHours(selectedDate, hour);
@@ -69,10 +81,9 @@ const DateTimePicker = ({ date, setDate }) => {
 
   const timeRange = () => {
     const isDateToday = isToday(selectedDate);
-    const earliestHour = getMinutes(selectedDate) > 30 ? getHours(selectedDate) + 1 : getHours(selectedDate);
-    const earliestMinute = getMinutes(selectedDate) > 30 ? 0 : 30;
+    const availableTimes = availableTimesFrom([getHours(selectedDate), getMinutes(selectedDate)]);
 
-    return isDateToday && earliestHour < 23 ? availableTimesFrom([earliestHour, earliestMinute]) : availableTimesFrom([null, null]);
+    return isDateToday && availableTimes.length > 0 ? availableTimes : availableTimesFrom([0, 0]);
   };
 
   return (
