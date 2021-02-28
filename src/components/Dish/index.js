@@ -14,7 +14,7 @@ const ingredientsString = (apiData) => {
   return ingredients.join(", ");
 };
 
-const DishScreen = () => {
+const DishScreen = ({ nextStep }) => {
   const [apiData, setApiData] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(undefined);
@@ -112,7 +112,7 @@ const DishScreen = () => {
             <div className="col-4">
               <div className={styles["dish-screen__next-module"]}>
                 <p>Er du tilfreds med den viste ret? Så gå videre til drinks valg!</p>
-                <Button disabled={loading || error} onClick={() => history.push("/drinks")}>
+                <Button disabled={loading || error} onClick={nextStep}>
                   Videre
                 </Button>
               </div>

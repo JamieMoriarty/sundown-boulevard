@@ -1,13 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import Steps from "../../modules/Steps/index";
+
 import NavBar from "../NavBar";
 import HomeView from "../Home";
-
-import "./App.scss";
 import DishScreen from "../Dish";
 import DrinksScreen from "../Drinks";
 import OrderScreen from "../Order/index";
+
+import "./App.scss";
 
 function App() {
   return (
@@ -18,14 +20,18 @@ function App() {
           <main>
             <Switch>
               <Route path="/order">
-                <OrderScreen />
+                <Steps>
+                  <DishScreen />
+                  <DrinksScreen />
+                  <OrderScreen />
+                </Steps>
               </Route>
-              <Route path="/drinks">
-                <DrinksScreen />
+              {/*<Route path="/drinks">
+                
               </Route>
               <Route path="/ret">
-                <DishScreen />
-              </Route>
+                
+              </Route>*/}
               <Route path="/">
                 <HomeView />
               </Route>

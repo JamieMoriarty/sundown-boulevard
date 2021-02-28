@@ -5,10 +5,19 @@ import DateTimePicker from "./DateTimePicker/index";
 
 import styles from "./Order.module.scss";
 
-const OrderScreen = () => {
+function validateEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+const OrderScreen = ({ nextStep }) => {
   const [chosenDate, setChosenDate] = useState(undefined);
   const [numPeople, setNumPeople] = useState(1);
   const [email, setEmail] = useState("");
+
+  const emailSetAndValid = () => {
+    return email && validateEmail(email);
+  };
 
   return (
     <div className={styles["order-screen"]}>
@@ -22,16 +31,18 @@ const OrderScreen = () => {
           <div className={styles["order-screen__remain-order-details"]}>
             <h2 className={styles["order-screen__section-title"]}>Sidste ordre info</h2>
             <PeoplePicker people={numPeople} setPeople={setNumPeople} />
-            <EmailInput email={email} setEmail={setEmail} />
+            <EmailInput email={email} setEmail={setEmail} error={!validateEmail(email)} />
           </div>
         </div>
-        <Button className={styles["order-screen__button"]}>Order</Button>
+        <Button className={styles["order-screen__button"]} onClick={() => (emailSetAndValid() ? nextStep : "")}>
+          Order
+        </Button>
       </div>
     </div>
   );
 };
 
-const EmailInput = ({ email, setEmail }) => {
+const EmailInput = ({ email, setEmail, error }) => {
   return (
     <label htmlFor="order-screen__people-picker" className={styles["order-screen__label"]}>
       Indtast e-mail adresse:
@@ -40,8 +51,9 @@ const EmailInput = ({ email, setEmail }) => {
         value={email}
         onChange={(event) => setEmail(event.target.value)}
         className={styles["order-screen__email-input"]}
-        placeholder="Ex. jens.jensen@email.example"
+        placeholder="Ex. jens.jensen@email.com"
       />
+      {error && <p>Ikke valid e-mail!</p>}
     </label>
   );
 };

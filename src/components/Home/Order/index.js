@@ -15,7 +15,7 @@ const Order = () => {
       <Button
         className={styles["order__button"]}
         onClick={() => {
-          history.push("/ret");
+          history.push("/order");
         }}
       >
         Bestil
