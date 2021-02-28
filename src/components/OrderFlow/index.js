@@ -12,6 +12,7 @@ const OrderFlow = () => {
   const updateOrder = (fieldName, part) => {
     const updatedOrder = { ...order, [fieldName]: part };
 
+    console.log("order", updatedOrder);
     setOrder(updatedOrder);
   };
 

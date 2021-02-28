@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import Button from "../../../modules/Button";
 
@@ -14,12 +13,10 @@ const ingredientsString = (apiData) => {
   return ingredients.join(", ");
 };
 
-const DishScreen = ({ nextStep }) => {
+const DishScreen = ({ nextStep, updateOrder }) => {
   const [apiData, setApiData] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(undefined);
-
-  const history = useHistory();
 
   const fetchRandomDish = async () => {
     setLoading(true);
@@ -67,6 +64,13 @@ const DishScreen = ({ nextStep }) => {
     return () => (dataCanBeSet = false);
   }, []);
 
+  const progress = () => {
+    const { strMealThumb, strMeal, strTags, idMeal } = apiData;
+
+    updateOrder({ strMealThumb, strMeal, strTags, idMeal });
+    nextStep();
+  };
+
   return (
     <div className={styles["dish-screen"]}>
       <div className="row">
@@ -112,7 +116,7 @@ const DishScreen = ({ nextStep }) => {
             <div className="col-4">
               <div className={styles["dish-screen__next-module"]}>
                 <p>Er du tilfreds med den viste ret? Så gå videre til drinks valg!</p>
-                <Button disabled={loading || error} onClick={nextStep}>
+                <Button disabled={loading || error} onClick={progress}>
                   Videre
                 </Button>
               </div>
