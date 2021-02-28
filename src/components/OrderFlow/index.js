@@ -7,6 +7,7 @@ import DrinksScreen from "./Drinks";
 import FinalizeScreen from "./Finalize/index";
 
 import { saveOrder } from "../../utils/storage";
+import Receipt from "./Receipt";
 
 const OrderFlow = () => {
   const [order, setOrder] = useState({});
@@ -28,6 +29,7 @@ const OrderFlow = () => {
           setOrder(updatedOrder);
         }}
       />
+      <Receipt order={order} />
     </Steps>
   );
 };

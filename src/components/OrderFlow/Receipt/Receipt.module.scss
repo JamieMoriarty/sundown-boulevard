@@ -1,0 +1,30 @@
+@import "../../../style/import.scss";
+
+.order-receipt {
+  @extend .container;
+  padding-top: 5rem;
+  padding-left: 5rem;
+
+  text-align: left;
+  color: $neutral-color-contrast;
+
+  &__title {
+    color: $primary-color;
+    font-size: 1.5rem;
+  }
+
+  &__section-title {
+    font-size: 1.3rem;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  &__section-content {
+    margin-bottom: 0;
+    margin-left: 1rem;
+
+    strong {
+      color: $primary-color;
+    }
+  }
+}
