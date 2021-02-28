@@ -21,29 +21,49 @@ const DishScreen = () => {
 
   const history = useHistory();
 
+  const fetchRandomDish = async () => {
+    setLoading(true);
+    setError(undefined);
+    let jsonResponse = undefined;
+
+    try {
+      const res = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+      jsonResponse = await res.json();
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+
+    return jsonResponse;
+  };
+
+  const updateDish = async () => {
+    setApiData(undefined);
+    setLoading(true);
+    setError(undefined);
+    const jsonResponse = await fetchRandomDish();
+
+    if (jsonResponse) {
+      setApiData(jsonResponse.meals[0]);
+    }
+  };
+
   useEffect(() => {
     let dataCanBeSet = true;
-    const fetchDish = async () => {
+
+    const setDish = async () => {
       setApiData(undefined);
       setLoading(true);
       setError(undefined);
-      let jsonResponse = undefined;
-
-      try {
-        const res = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
-        jsonResponse = await res.json();
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
+      const jsonResponse = await fetchRandomDish();
 
       if (dataCanBeSet && jsonResponse) {
         setApiData(jsonResponse.meals[0]);
       }
     };
 
-    fetchDish();
+    setDish();
     return () => (dataCanBeSet = false);
   }, []);
 
@@ -83,6 +103,9 @@ const DishScreen = () => {
                   )}
                   <h2 className={styles["dish-screen__section-heading"]}>Ingredienser:</h2>
                   <p className={styles["dish-screen__section-content"]}>{ingredientsString(apiData)}</p>
+                  <Button className={styles["dish-screen__update-button"]} onClick={updateDish}>
+                    Generate new
+                  </Button>
                 </React.Fragment>
               ) : null}
             </div>
