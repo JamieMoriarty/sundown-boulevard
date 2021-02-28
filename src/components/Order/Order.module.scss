@@ -66,35 +66,51 @@
   &__people-picker {
     display: flex;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    $arrow-size: 0.5rem;
 
-    &__modifier {
+    &__plus {
       width: 0;
       height: 0;
+      border-top: $arrow-size solid transparent;
+      border-bottom: $arrow-size solid transparent;
 
-      $arrow-size: 0.8rem;
+      margin-left: 1rem;
 
-      &:hover {
-        cursor: pointer;
-      }
-
-      &--minus {
-        border-top: $arrow-size solid transparent;
-        border-bottom: $arrow-size solid transparent;
-        border-right: $arrow-size solid $primary-color;
-
-        margin-right: 1rem;
-      }
-
-      &--plus {
-        border-top: $arrow-size solid transparent;
-        border-bottom: $arrow-size solid transparent;
+      &--active {
         border-left: $arrow-size solid $primary-color;
 
-        margin-left: 1rem;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &--disabled {
+        border-left: $arrow-size solid $neutral-color-contrast;
+      }
+    }
+
+    &__minus {
+      width: 0;
+      height: 0;
+      border-top: $arrow-size solid transparent;
+      border-bottom: $arrow-size solid transparent;
+
+      margin-right: 1rem;
+
+      &--active {
+        border-right: $arrow-size solid $primary-color;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &--disabled {
+        border-right: $arrow-size solid $neutral-color-contrast;
       }
     }
   }

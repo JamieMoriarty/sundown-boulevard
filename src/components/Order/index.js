@@ -52,14 +52,16 @@ const PeoplePicker = ({ people, setPeople }) => {
       Vælg antal gæster:
       <div className={styles["order-screen__people-picker"]} id="order-screen__people-picker">
         <div
-          className={`${styles["order-screen__people-picker__modifier"]} ${styles["order-screen__people-picker__modifier--minus"]}`}
-          disabled={people <= 1}
+          className={`${styles["order-screen__people-picker__minus"]} ${
+            people > 1 ? styles["order-screen__people-picker__minus--active"] : styles["order-screen__people-picker__minus--disabled"]
+          }`}
           onClick={() => (people > 1 ? setPeople(people - 1) : "")}
         />
         {people}
         <div
-          className={`${styles["order-screen__people-picker__modifier"]} ${styles["order-screen__people-picker__modifier--plus"]}`}
-          disabled={people >= 10}
+          className={`${styles["order-screen__people-picker__plus"]} ${
+            people < 10 ? styles["order-screen__people-picker__plus--active"] : styles["order-screen__people-picker__plus--disabled"]
+          }`}
           onClick={() => (people < 10 ? setPeople(people + 1) : "")}
         />
       </div>
