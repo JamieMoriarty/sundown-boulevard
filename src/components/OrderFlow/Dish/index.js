@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import Button from "../../modules/Button";
+import Button from "../../../modules/Button";
 
 import styles from "./Dish.module.scss";
 

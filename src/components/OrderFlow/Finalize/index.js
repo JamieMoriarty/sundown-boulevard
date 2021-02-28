@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Button from "../../modules/Button/index";
+import Button from "../../../modules/Button/index";
 import DateTimePicker from "./DateTimePicker/index";
 
 import styles from "./Order.module.scss";

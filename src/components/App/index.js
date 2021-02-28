@@ -1,13 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Steps from "../../modules/Steps/index";
-
 import NavBar from "../NavBar";
 import HomeView from "../Home";
-import DishScreen from "../Dish";
-import DrinksScreen from "../Drinks";
-import OrderScreen from "../Order/index";
+import OrderFlow from "../OrderFlow";
 
 import "./App.scss";
 
@@ -20,18 +16,8 @@ function App() {
           <main>
             <Switch>
               <Route path="/order">
-                <Steps>
-                  <DishScreen />
-                  <DrinksScreen />
-                  <OrderScreen />
-                </Steps>
+                <OrderFlow />
               </Route>
-              {/*<Route path="/drinks">
-                
-              </Route>
-              <Route path="/ret">
-                
-              </Route>*/}
               <Route path="/">
                 <HomeView />
               </Route>
